@@ -1,0 +1,1 @@
+no-comment: no-comment.c
