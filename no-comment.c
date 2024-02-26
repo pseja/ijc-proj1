@@ -11,8 +11,7 @@ int main(int argc, char **argv)
 
         if (file == NULL)
         {
-            fprintf(stderr, "Error: Failed opening file: %s!\n", filename);
-            return 1;
+            error_exit("Failed opening file: %s!\n", filename);
         }
     }
     else
@@ -25,6 +24,7 @@ int main(int argc, char **argv)
 
     while ((c = fgetc(file)) != EOF)
     {
+        // printf("State: %d\n", state);
         switch (state)
         {
         case 0:
@@ -88,10 +88,13 @@ int main(int argc, char **argv)
             {
                 state = 0;
             }
+            else if (c == '*')
+            {
+                continue;
+            }
             else
             {
                 state = 2;
-                putchar('*');
             }
             break;
 
