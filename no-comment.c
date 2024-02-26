@@ -1,6 +1,6 @@
 #include "error.h"
 
-int main(int argc, char **argv)
+FILE *handleFile(int argc, char **argv)
 {
     FILE *file;
 
@@ -19,12 +19,16 @@ int main(int argc, char **argv)
         file = stdin;
     }
 
+    return file;
+}
+
+int stateMachine(FILE *file)
+{
     int state = 0;
     int c = 0;
 
     while ((c = fgetc(file)) != EOF)
     {
-        // printf("State: %d\n", state);
         switch (state)
         {
         case 0:
@@ -101,9 +105,9 @@ int main(int argc, char **argv)
         case 5:
             if (c == '\n')
             {
-                state = 3;
                 putchar('\n');
             }
+            state = 3;
             break;
 
         case 6:
@@ -142,6 +146,33 @@ int main(int argc, char **argv)
         }
     }
 
+    return state;
+}
+
+int main(int argc, char **argv)
+{
+    // stat struct for handling input file == output file
+    struct stat stat_input, stat_output;
+
+    FILE *file = handleFile(argc, argv);
+
+    if (file != stdin)
+    {
+        fstat(fileno(file), &stat_input);
+        fstat(STDOUT_FILENO, &stat_output);
+
+        if (stat_input.st_ino == stat_output.st_ino)
+        {
+            if (fclose(file) == EOF)
+            {
+                error_exit("Failed to close input file!\n");
+            }
+            error_exit("Input file is the same as output file!\n");
+        }
+    }
+
+    int state = stateMachine(file);
+
     if (file != stdin)
     {
         fclose(file);
@@ -149,8 +180,7 @@ int main(int argc, char **argv)
 
     if (state != 0)
     {
-        fprintf(stderr, "Error: Unknown state!\n");
-        return 2;
+        error_exit("Unclosed comment or string!\n");
     }
 
     return 0;
