@@ -22,6 +22,8 @@ void error_exit(const char *fmt, ...)
     vfprintf(stderr, fmt, args);
 
     va_end(args);
+
+    exit(1);
 }
 
 int main()
