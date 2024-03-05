@@ -5,7 +5,7 @@
 #include <stdlib.h>
 #include <stdarg.h>
 
-extern void warning(const char *fmt, ...);
-extern void error_exit(const char *fmt, ...);
+void warning(const char *fmt, ...);
+void error_exit(const char *fmt, ...);
 
 #endif
