@@ -12,43 +12,51 @@ inline bitset_index_t bitset_size(bitset_t jmeno_pole)
     return jmeno_pole[0];
 }
 
+inline void bitset_fill(bitset_t jmeno_pole, bool bool_vyraz)
+{
+    bitset_index_t bitset_fill_velikost = CALCULATE_BITSET_SIZE(bitset_size(jmeno_pole));
+    bitset_index_t bitset_fill_filler = (bool_vyraz) ? -1 : 0;
+
+    for (bitset_index_t i = 1; i < bitset_fill_velikost; i++)
+    {
+        jmeno_pole[i] = bitset_fill_filler;
+    }
+}
+
 inline void bitset_setbit(bitset_t jmeno_pole, bitset_index_t index, bool bool_vyraz)
 {
-    bitset_index_t index = index + ULONG_BITS;
-    bitset_index_t velikost = bitset_size(jmeno_pole);
+    bitset_index_t bitset_setbit_index = index + ULONG_BIT_COUNT;
+    bitset_index_t bitset_setbit_velikost = bitset_size(jmeno_pole);
 
-    if (index >= velikost)
+    if (bitset_setbit_index - ULONG_BIT_COUNT >= bitset_setbit_velikost)
     {
-        error_exit("bitset_setbit: Index %lu mimo rozsah 0..%lu", index - ULONG_BITS, velikost);
+        error_exit("bitset_setbit: Index %lu mimo rozsah 0..%lu", bitset_setbit_index - ULONG_BIT_COUNT, bitset_setbit_velikost);
     }
     else
     {
-        bitset_index_t maska = 1UL << (index % ULONG_BITS);
+        bitset_index_t bitset_setbit_maska = 1UL << (bitset_setbit_index % ULONG_BIT_COUNT);
 
         if (bool_vyraz)
         {
-            jmeno_pole[index / ULONG_BITS] |= maska;
+            jmeno_pole[bitset_setbit_index / ULONG_BIT_COUNT] |= bitset_setbit_maska;
         }
         else
         {
-            jmeno_pole[index / ULONG_BITS] &= ~maska;
+            jmeno_pole[bitset_setbit_index / ULONG_BIT_COUNT] &= ~bitset_setbit_maska;
         }
     }
 }
 
 inline bitset_index_t bitset_getbit(bitset_t jmeno_pole, bitset_index_t index)
 {
-    bitset_index_t index = index + ULONG_BITS;
-    bitset_index_t velikost = bitset_size(jmeno_pole);
+    bitset_index_t bitset_getbit_index = index + ULONG_BIT_COUNT;
+    bitset_index_t bitset_getbit_velikost = bitset_size(jmeno_pole);
 
-    if (index >= velikost)
+    if (bitset_getbit_index - ULONG_BIT_COUNT >= bitset_getbit_velikost)
     {
-        error_exit("bitset_getbit: Index %lu mimo rozsah 0..%lu", index - ULONG_BITS, velikost);
+        error_exit("bitset_getbit: Index %lu mimo rozsah 0..%lu", bitset_getbit_index - ULONG_BIT_COUNT, bitset_getbit_velikost);
     }
-    else
-    {
-        return (jmeno_pole[(index / ULONG_BITS) + 1] >> (index % ULONG_BITS)) & 1UL;
-    }
+    return (jmeno_pole[(bitset_getbit_index / ULONG_BIT_COUNT)] >> (bitset_getbit_index % ULONG_BIT_COUNT)) & 1UL;
 }
 
 #endif /* USE_INLINE */
