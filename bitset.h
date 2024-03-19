@@ -1,3 +1,8 @@
+// bitset.h
+// Řešení IJC-DU1, příklad A), 20.3.2024
+// Autor: Lukáš Pšeja, FIT
+// Přeloženo: gcc 11.4.0
+
 #ifndef BITSET_H
 #define BITSET_H
 
@@ -18,11 +23,6 @@ typedef unsigned long bitset_index_t;
 
 // Calculates the size for the bitset
 #define CALCULATE_BITSET_SIZE(velikost) ((((velikost) / (ULONG_BIT_COUNT)) + ((SIZE_PLUS_ONE(velikost)) + (1))))
-
-/*
-*pole bude big-endian od 0 indexu do posledního indexu
-TODO: VYŘEŠIT STATIC BITSET_CREATE
-*/
 
 // Creates a bitset locally with the given name and size
 #define bitset_create(jmeno_pole, velikost)                                        \

@@ -4,26 +4,26 @@
 
 int main()
 {
-    /*
-            Multi
-                    Line
-        Block
-                Comment
+        /*
+                Multi
+                        Line
+            Block
+                    Comment
 
-    */
+        */
 
-    char *comment = "/* This is not a block comment */";
-    char *string = "// This is not a line comment";
+        char *comment = "/* This is not a block comment */";
+        char *string = "// This is not a line comment";
 
-    /* Random block comment */
-    char a = 'a'; // This is a line comment with escape sequences: \t \r \n
-    char b = 'b';
-    char c = '/'; // The line below should be treated as a comment \
+        /* Random block comment */
+        char a = 'a'; // This is a line comment with escape sequences: \t \r \n
+        char b = 'b';
+        char c = '/'; // The line below should be treated as a comment \
     char d = 'd';
 
-    /* Line comment inside // of block comment */
+        /* Line comment inside // of block comment */
 
-    // Line \
+        // Line \
     comment \
     that \
     continues \
@@ -31,13 +31,13 @@ int main()
     different \
     lines
 
-    char d = '\\';
-    char e = '\'';
+        char /* this should be replaced by space */ d = '\\';
+        char e = '\'';
 
-    /* This is a block comment with escape sequences: \t \r \n*/
+        /* This is a block comment with escape sequences: \t \r \n*/
 
-    char *string2 = "/***/";
-    char *string3 = "text\"//text\'\"\\";
+        char *string2 = "/***/";
+        char *string3 = "text\"//text\'\"\\";
 
-    return 0;
+        return 0;
 }

@@ -1,3 +1,10 @@
+// error.h
+// Řešení IJC-DU1, příklad B), 20.3.2024
+// Autor: Lukáš Pšeja, FIT
+// Přeloženo: gcc 11.4.0
+// musí být definováno _POSIC_C_SOURCE 200809L, jinak nastanou při překladu problémy s funkcí fileno()
+
+#define _POSIX_C_SOURCE 200809L
 #include "error.h"
 #include <sys/stat.h>
 #include <unistd.h>
@@ -66,6 +73,7 @@ int stateMachine(FILE *file)
             else
             {
                 putchar('/');
+                putchar(c);
                 state = 0;
             }
             break;
@@ -154,6 +162,11 @@ int stateMachine(FILE *file)
 
 int main(int argc, char **argv)
 {
+    if (argc > 2)
+    {
+        error_exit("Too many arguments.\n");
+    }
+
     // stat struct for handling input file == output file
     struct stat stat_input, stat_output;
 
@@ -179,7 +192,10 @@ int main(int argc, char **argv)
 
     if (file != stdin)
     {
-        fclose(file);
+        if (fclose(file) == EOF)
+        {
+            error_exit("Failed to close input file!\n");
+        }
     }
 
     if (state != 0)
