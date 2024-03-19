@@ -6,7 +6,8 @@ int main(void)
 {
     clock_t start = clock();
 
-    bitset_alloc(arr, 666000000);
+    // ulimit -s 83250
+    bitset_create(arr, 666000000);
 
     Eratosthenes(arr);
 
@@ -26,7 +27,6 @@ int main(void)
         printf("%lu\n", primes[i]);
     }
 
-    bitset_free(arr);
     fprintf(stderr, "Time=%.3g\n", (double)(clock() - start) / CLOCKS_PER_SEC);
     return 0;
 }
