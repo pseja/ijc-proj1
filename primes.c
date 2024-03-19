@@ -27,6 +27,6 @@ int main(void)
     }
 
     bitset_free(arr);
-    printf("Time=%.3g\n", (double)(clock() - start) / CLOCKS_PER_SEC);
+    fprintf(stderr, "Time=%.3g\n", (double)(clock() - start) / CLOCKS_PER_SEC);
     return 0;
 }
