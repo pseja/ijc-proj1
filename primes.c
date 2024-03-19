@@ -7,7 +7,7 @@ int main(void)
     clock_t start = clock();
 
     // ulimit -s 83250
-    bitset_create(arr, 666000000);
+    bitset_create(arr, 666000000UL);
 
     Eratosthenes(arr);
 
@@ -15,7 +15,11 @@ int main(void)
     int count = 0;
     for (bitset_index_t i = bitset_size(arr) - 1; i > 0 && count < 10; i--)
     {
-        if (bitset_getbit(arr, i))
+        if (bitset_getbit(arr, i) == 2)
+        {
+            error_exit("bitset_getbit: Index %lu mimo rozsah 0..%lu", i, bitset_size(arr));
+        }
+        else if (bitset_getbit(arr, i) == 1)
         {
             primes[count] = i;
             count++;

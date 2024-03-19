@@ -28,7 +28,7 @@ inline void bitset_setbit(bitset_t jmeno_pole, bitset_index_t index, bool bool_v
     bitset_index_t bitset_setbit_index = index + ULONG_BIT_COUNT;
     bitset_index_t bitset_setbit_velikost = bitset_size(jmeno_pole);
 
-    if (bitset_setbit_index - ULONG_BIT_COUNT >= bitset_setbit_velikost)
+    if (bitset_setbit_index - ULONG_BIT_COUNT > bitset_setbit_velikost)
     {
         error_exit("bitset_setbit: Index %lu mimo rozsah 0..%lu", bitset_setbit_index - ULONG_BIT_COUNT, bitset_setbit_velikost);
     }
@@ -52,9 +52,9 @@ inline bitset_index_t bitset_getbit(bitset_t jmeno_pole, bitset_index_t index)
     bitset_index_t bitset_getbit_index = index + ULONG_BIT_COUNT;
     bitset_index_t bitset_getbit_velikost = bitset_size(jmeno_pole);
 
-    if (bitset_getbit_index - ULONG_BIT_COUNT >= bitset_getbit_velikost)
+    if (bitset_getbit_index - ULONG_BIT_COUNT > bitset_getbit_velikost)
     {
-        error_exit("bitset_getbit: Index %lu mimo rozsah 0..%lu", bitset_getbit_index - ULONG_BIT_COUNT, bitset_getbit_velikost);
+        return 2;
     }
     return (jmeno_pole[(bitset_getbit_index / ULONG_BIT_COUNT)] >> (bitset_getbit_index % ULONG_BIT_COUNT)) & 1UL;
 }

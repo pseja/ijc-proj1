@@ -70,7 +70,7 @@ TODO: VYŘEŠIT STATIC BITSET_CREATE
     {                                                                                                                   \
         bitset_index_t setbit_index = (bitset_index_t)index + ULONG_BIT_COUNT;                                          \
         bitset_index_t setbit_velikost = bitset_size(jmeno_pole);                                                       \
-        if (setbit_index - ULONG_BIT_COUNT >= setbit_velikost)                                                          \
+        if (setbit_index - ULONG_BIT_COUNT > setbit_velikost)                                                           \
         {                                                                                                               \
             error_exit("bitset_setbit: Index %lu mimo rozsah 0..%lu", setbit_index - ULONG_BIT_COUNT, setbit_velikost); \
         }                                                                                                               \
@@ -88,9 +88,8 @@ TODO: VYŘEŠIT STATIC BITSET_CREATE
         }                                                                                                               \
     } while (0)
 
-// Returns the bit at the given index
-// TODO SOMEHOW CHECK IF IM NOT GRABBING FROM OUTSIDE OF THE ARRAY
-#define bitset_getbit(jmeno_pole, index) (jmeno_pole[(((bitset_index_t)index + ULONG_BIT_COUNT) / ULONG_BIT_COUNT)] >> (((bitset_index_t)index + ULONG_BIT_COUNT) % ULONG_BIT_COUNT) & 1UL)
+// Returns the bit at the given index, if the index is out of range, returns 2
+#define bitset_getbit(jmeno_pole, index) (((bitset_index_t)index > bitset_size(jmeno_pole)) ? 2 : jmeno_pole[(((bitset_index_t)index + ULONG_BIT_COUNT) / ULONG_BIT_COUNT)] >> (((bitset_index_t)index + ULONG_BIT_COUNT) % ULONG_BIT_COUNT) & 1UL)
 
 #else
 
