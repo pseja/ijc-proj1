@@ -1,6 +1,14 @@
 {
     "workbench.iconTheme": "catppuccin-mocha",
     "files.associations": {
-        "error.h": "c"
+        "error.h": "c",
+        "eratosthenes.h": "c",
+        "limits.h": "c",
+        "stdbool.h": "c",
+        "stdio.h": "c",
+        "stdlib.h": "c",
+        "stat.h": "c",
+        "no-comment-result": "c",
+        "stdarg.h": "c"
     }
 }
