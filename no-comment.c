@@ -93,6 +93,7 @@ int stateMachine(FILE *file)
             if (c == '/')
             {
                 state = 0;
+                putchar(' ');
             }
             else if (c == '*')
             {

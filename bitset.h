@@ -70,7 +70,7 @@ TODO: VYŘEŠIT STATIC BITSET_CREATE
     {                                                                                                                   \
         bitset_index_t setbit_index = (bitset_index_t)index + ULONG_BIT_COUNT;                                          \
         bitset_index_t setbit_velikost = bitset_size(jmeno_pole);                                                       \
-        if (setbit_index - 64 >= setbit_velikost)                                                                       \
+        if (setbit_index - ULONG_BIT_COUNT >= setbit_velikost)                                                          \
         {                                                                                                               \
             error_exit("bitset_setbit: Index %lu mimo rozsah 0..%lu", setbit_index - ULONG_BIT_COUNT, setbit_velikost); \
         }                                                                                                               \
