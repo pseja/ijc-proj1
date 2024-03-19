@@ -2,24 +2,22 @@
 #include "eratosthenes.h"
 #include <time.h>
 
-#define POCET_CISEL 30
-
 int main(void)
 {
     clock_t start = clock();
 
-    bitset_alloc(arr, POCET_CISEL);
+    bitset_alloc(arr, 666000000);
 
     Eratosthenes(arr);
 
     bitset_index_t primes[10] = {0};
-    int pocet = 0;
-    for (bitset_index_t i = bitset_size(arr) - 1; i > 0 && pocet < 10; i--)
+    int count = 0;
+    for (bitset_index_t i = bitset_size(arr) - 1; i > 0 && count < 10; i--)
     {
         if (bitset_getbit(arr, i))
         {
-            primes[pocet] = i;
-            pocet++;
+            primes[count] = i;
+            count++;
         }
     }
 
