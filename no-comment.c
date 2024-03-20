@@ -1,5 +1,5 @@
 // error.h
-// Řešení IJC-DU1, příklad B), 20.3.2024
+// Řešení IJC-DU1, příklad b), 20.3.2024
 // Autor: Lukáš Pšeja, FIT
 // Přeloženo: gcc 11.4.0
 // musí být definováno _POSIC_C_SOURCE 200809L, jinak nastanou při překladu problémy s funkcí fileno()

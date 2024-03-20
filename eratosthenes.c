@@ -1,5 +1,5 @@
 // eratosthenes.c
-// Řešení IJC-DU1, příklad A), 20.3.2024
+// Řešení IJC-DU1, příklad a), 20.3.2024
 // Autor: Lukáš Pšeja, FIT
 // Přeloženo: gcc 11.4.0
 

@@ -1,3 +1,8 @@
+# eratosthenes.c
+# Řešení IJC-DU1, příklad a), 20.3.2024
+# Autor: Lukáš Pšeja, FIT
+# Přeloženo: GNU Make 4.3
+
 LC_ALL=cs_CZ.utf8
 COMPILER=gcc
 M32=
