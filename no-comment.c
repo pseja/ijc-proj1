@@ -172,7 +172,6 @@ int main(int argc, char **argv)
 
     FILE *file = handleFile(argc, argv);
 
-    // TODO figure out how to handle input file == redirected output file
     if (file != stdin)
     {
         fstat(fileno(file), &stat_input);
