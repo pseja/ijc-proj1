@@ -16,28 +16,28 @@ void Eratosthenes(bitset_t pole)
     // Rychlé nastavení sudých čísel na 0 na 32 a 64 bitových systémech
     if (ULONG_BIT_COUNT == 32)
     {
-        for (bitset_index_t i = 1; i <= CALCULATE_BITSET_SIZE(bitset_size_velikost); i++)
+        for (bitset_index_t i = 1; i < CALCULATE_BITSET_SIZE(bitset_size_velikost); i++)
         {
             pole[i] = (bitset_index_t)0xAAAAAAAA;
         }
     }
     else if (ULONG_BIT_COUNT == 64)
     {
-        for (bitset_index_t i = 1; i <= CALCULATE_BITSET_SIZE(bitset_size_velikost); i++)
+        for (bitset_index_t i = 1; i < CALCULATE_BITSET_SIZE(bitset_size_velikost); i++)
         {
             pole[i] = (bitset_index_t)0xAAAAAAAAAAAAAAAA;
         }
     }
     else
     {
-        for (bitset_index_t i = 0; i <= bitset_size_velikost; i += 2)
+        for (bitset_index_t i = 0; i < bitset_size_velikost; i += 2)
         {
             bitset_setbit(pole, i, false);
         }
     }
 
     // Nastavení lichých násobků 3 na 0
-    for (bitset_index_t i = 9; i <= bitset_size_velikost; i += 6)
+    for (bitset_index_t i = 9; i < bitset_size_velikost; i += 6)
     {
         bitset_setbit(pole, i, false);
     }
