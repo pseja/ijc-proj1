@@ -10,7 +10,6 @@ int main(void)
 {
     clock_t start = clock();
 
-    // ulimit -s 83250
     bitset_create(arr, 666000000UL);
 
     Eratosthenes(arr);
