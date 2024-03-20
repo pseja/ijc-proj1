@@ -19,11 +19,12 @@ int main(void)
     int count = 0;
     for (bitset_index_t i = bitset_size(arr) - 1; i > 0 && count < 10; i--)
     {
-        if (bitset_getbit(arr, i) == 2)
+        bitset_index_t bit = bitset_getbit(arr, i);
+        if (bit == 2)
         {
             error_exit("bitset_getbit: Index %lu mimo rozsah 0..%lu", i, bitset_size(arr));
         }
-        else if (bitset_getbit(arr, i) == 1)
+        else if (bit == 1)
         {
             primes[count] = i;
             count++;
