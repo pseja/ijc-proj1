@@ -1,4 +1,7 @@
-Domácí úkol č.1
+# Domácí úkol č.1
+
+### Výsledné hodnocení
+(14/15) - no-comment.c neřeší všechny varianty
 
 Termín odevzdání:  25.3.2024
 Hodnocení celkem max. 15 bodů
